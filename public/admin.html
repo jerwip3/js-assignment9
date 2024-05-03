@@ -39,16 +39,16 @@
                 <div id="confirmation" class="mt-3"></div>
             </div>
         </div>
-        <div class="container mt-5 admin-container">
+        <div class="container admin-container">
             <h2 class="text-center text-primary">Events</h2><br>
             <div class="row">
                 <div class="col-md-4">
                     <!-- Add Event Form -->
                     <form id="addEventForm">
                         <fieldset>
-                            <legend class="text-center">Add an Event</legend>
+                            <legend class="text-center border-bottom border-1">Add an Event</legend>
                         </fieldset>
-                        <div class="form-group">
+                        <div class="form-group ">
                             <label for="event">Event Name</label>
                             <input type="text" class="form-control" id="event" placeholder="Enter Event Name" required />
                         </div>
@@ -71,7 +71,7 @@
                     <!-- Update Event Form -->
                     <form id="updateEventForm" action="/api/events" method="PUT">
                         <fieldset>
-                            <legend class="text-center">Update an Event</legend>
+                            <legend class="text-center border-bottom border-1">Update an Event</legend>
                             <div class="form-group">
                                 <label for="selectEventUpdate">Select Event</label>
                                 <select class="form-control" id="selectEventUpdate" required></select>
@@ -100,7 +100,7 @@
                     <!-- Delete Event Form -->
                     <form id="deleteEventForm">
                         <fieldset>
-                            <legend class="text-center">Delete an Event</legend>
+                            <legend class="text-center border-bottom border-1">Delete an Event</legend>
                         </fieldset>
                         <div class="form-group">
                             <label for="selectEventDelete">Select Event</label>
@@ -110,7 +110,7 @@
                     </form>
                 </div>
             </div>
-            <div class="container mt-5 admin-container" style="margin-bottom: 100px;">
+            <div class="container mt-2 admin-container" style="margin-bottom: 100px;">
                 <h2 class="text-center text-primary">Menu Items</h2><br>
                 <div class="row">
                     <div class="row">
@@ -118,7 +118,7 @@
                             <!-- Add Menu Form -->
                             <form id="addMenuForm">
                                 <fieldset>
-                                    <legend class="text-center">Add a Menu Item</legend>
+                                    <legend class="text-center border-bottom border-1">Add a Menu Item</legend>
                                 </fieldset>
                                 <div class="form-group">
                                     <label for="name">Name</label>
@@ -145,7 +145,7 @@
                             <!-- Update Menu Form -->
                             <form id="updateMenuForm" action="/api/menu" method="PUT">
                                 <fieldset>
-                                    <legend class="text-center">Update a Menu Item</legend>
+                                    <legend class="text-center border-bottom border-1">Update a Menu Item</legend>
                                     <div class="form-group">
                                         <label for="selectMenuUpdate">Select Item</label>
                                         <select class="form-control" id="selectMenuUpdate" required></select>
@@ -174,7 +174,7 @@
                             <!-- Delete Menu Form -->
                             <form id="deleteMenuForm">
                                 <fieldset>
-                                    <legend class="text-center">Delete a Menu Item</legend>
+                                    <legend class="text-center border-bottom border-1">Delete a Menu Item</legend>
                                 </fieldset>
                                 <div class="form-group">
                                     <label for="selectMenuDelete">Select Item</label>
