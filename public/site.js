@@ -20,7 +20,7 @@ window.onload = async function () {
                 <div class="card bg-light">
                     <div class="card-body">
                         <h5 class="card-title text-secondary cursor-pointer text-center">${event.event}</h5>
-                        <div id="${event._id}" class="event-details" style="display: none;"></div>
+                        <div id="${event._id}" class="event-details border-top border-1" style="display: none;"></div>
                     </div>`
             eventsContainer.appendChild(eventElement)
         }
