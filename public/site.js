@@ -66,7 +66,7 @@ window.onload = async function () {
             const menuItemElement = document.createElement("div")
             menuItemElement.className = "col-md-4 mb-4"
             menuItemElement.innerHTML = `
-                <div class="card bg-light">
+                <div class="card bg-light" style="min-height: 475px;">
                     <img src="${menuItem.imageUrl}" class="card-img-top" alt="${menuItem.name}">
                     <div class="card-body">
                         <h5 class="card-title text-secondary cursor-pointer text-center">${menuItem.name}</h5>
