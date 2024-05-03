@@ -5,14 +5,9 @@ window.onload = async function () {
         const response = await fetch("/api/events")
         let events = await response.json()
 
-        // Sorts the events array by date
-        events = events.sort((a, b) => {
-            return new Date(a.date) - new Date(b.date)
-        })
-
+        // populates the event headers using event names/ids
         const eventsContainer = document.querySelector("#events-container")
         eventsContainer.innerHTML = ""
-        // Populates the events container
         for (const event of events) {
             const eventElement = document.createElement("div")
             eventElement.className = "col-md-4 mb-4"
@@ -20,27 +15,38 @@ window.onload = async function () {
                 <div class="card bg-light">
                     <div class="card-body">
                         <h5 class="card-title text-secondary cursor-pointer text-center">${event.event}</h5>
-                        <div class="event-details" style="display: none">
-                            <p class="card-text text-center"><b>Location:</b> ${event.location}</p>
-                            <p class="card-text text-center"><b>Date:</b> ${event.date}</p>
-                            <p class="card-text text-center"><b>Time:</b> ${event.hours}</p>
-                        </div>
-                    </div>
-                </div>
-            `
+                        <div id="${event._id}" class="event-details" style="display: none;"></div>
+                    </div>`
             eventsContainer.appendChild(eventElement)
-            // Expands the event details when the title is clicked
-            eventElement
-            .querySelector(".card-title")
-            .addEventListener("click", function () {
-                const eventDetails = this.nextElementSibling
-                if (eventDetails.style.display === "none") {
-                    eventDetails.style.display = "block"
-                } else {
-                    eventDetails.style.display = "none"
-                }
-            })
         }
+    }
+
+    // Loads event details card when the event title is clicked
+    if (document.querySelector("#events-container")) {
+        const eventsContainer = document.querySelector("#events-container")
+        eventsContainer.addEventListener("click", async function (event) {
+            if (event.target.className.includes("card-title")) {
+            const eventDetails = event.target.nextElementSibling
+            const eventId = eventDetails.id
+        
+            if (eventDetails.innerHTML === "") {
+                const response = await fetch(`/api/events/${eventId}`)
+                const eventData = await response.json()
+        
+                eventDetails.innerHTML = `
+                <p class="card-text text-center"><b>Location:</b> ${eventData.location}</p>
+                <p class="card-text text-center"><b>Date:</b> ${eventData.date}</p>
+                <p class="card-text text-center"><b>Time:</b> ${eventData.hours}</p>
+                `
+            }
+        
+            if (eventDetails.style.display === "none") {
+                eventDetails.style.display = "block"
+            } else {
+                eventDetails.style.display = "none"
+            }
+            }
+        })
     }
 
     // Loads the menu from the API and renders them in the menu-container
@@ -69,6 +75,7 @@ window.onload = async function () {
             menuContainer.appendChild(menuItemElement)
         }
     }
+
     // Updates the event select dropdown on the admin page
     if (document.querySelector("#updateEventForm")) {
         const selectEventUpdate = document.getElementById("selectEventUpdate")

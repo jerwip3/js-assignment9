@@ -48,7 +48,7 @@ router.delete("/api/menu/:id", async (req, res) => {
 // GET /api/events
 router.get("/api/events", async (req, res) => {
     const collection = await getCollection("events")
-    const events = await collection.find({}).toArray()
+    const events = await collection.find({}, { projection: { _id: 1, event: 1 } }).toArray()
     res.json(events)
 })
 
