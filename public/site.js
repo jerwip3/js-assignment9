@@ -5,7 +5,12 @@ window.onload = async function () {
         const response = await fetch("/api/events")
         let events = await response.json()
 
-        // populates the event headers using event names/ids
+        // Sorts the events by date in ascending order
+        events = events.sort((a, b) => {
+            return new Date(a.date) - new Date(b.date)
+        })
+
+        // Populates the event headers using event names/ids
         const eventsContainer = document.querySelector("#events-container")
         eventsContainer.innerHTML = ""
         for (const event of events) {
