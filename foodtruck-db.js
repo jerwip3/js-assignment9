@@ -1,3 +1,5 @@
+// Establishes connection to the MongoDB
+
 const { MongoClient } = require('mongodb')
 
 const url = process.env.MONGODB_URI || require('./secrets/mongodb.json').url

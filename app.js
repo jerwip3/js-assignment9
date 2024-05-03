@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.static('public'))
 app.use(apiRoutes)
 
-// Routes to redirect to the frontend pages from the root URL
+// Redirects for the frontend pages from the root URL
 app.get('/', (_, response) => {
     response.sendFile('index.html', { root: path.join(__dirname, 'public') })
 })
