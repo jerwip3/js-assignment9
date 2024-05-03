@@ -285,6 +285,7 @@ async function deleteEvent(event) {
 }
 
 // Menu Add/Update/Delete Forms
+
 // Menu Item Addition Form
 async function addMenuItem(event) {
     event.preventDefault()
@@ -404,7 +405,7 @@ async function updateMenuItem(event) {
     }
 }
 
-// Function that deletes the selected menu item
+// Deletes the selected menu item
 async function deleteMenuItem(event) {
     event.preventDefault() // Prevents default form submission
     const id = document.getElementById("deleteMenuUpdate").value
