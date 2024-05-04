@@ -33,23 +33,20 @@ window.onload = async function () {
             if (event.target.className.includes("card-title")) {
             const eventDetails = event.target.nextElementSibling
             const eventId = eventDetails.id
-        
-            if (eventDetails.innerHTML === "") {
-                const response = await fetch(`/api/events/${eventId}`)
-                const eventData = await response.json()
-        
-                eventDetails.innerHTML = `
-                <p class="card-text text-center"><b>Location:</b> ${eventData.location}</p>
-                <p class="card-text text-center"><b>Date:</b> ${eventData.date}</p>
-                <p class="card-text text-center"><b>Time:</b> ${eventData.hours}</p>
-                `
-            }
-        
-            if (eventDetails.style.display === "none") {
-                eventDetails.style.display = "block"
-            } else {
-                eventDetails.style.display = "none"
-            }
+                if (eventDetails.innerHTML === "") {
+                    const response = await fetch(`/api/events/${eventId}`)
+                    const eventData = await response.json()
+                    eventDetails.innerHTML = `
+                    <p class="card-text text-center"><b>Location:</b> ${eventData.location}</p>
+                    <p class="card-text text-center"><b>Date:</b> ${eventData.date}</p>
+                    <p class="card-text text-center"><b>Time:</b> ${eventData.hours}</p>
+                    `
+                }
+                if (eventDetails.style.display === "none") {
+                    eventDetails.style.display = "block"
+                } else {
+                    eventDetails.style.display = "none"
+                }
             }
         })
     }
@@ -109,6 +106,8 @@ window.onload = async function () {
 
 // Sets up event listeners for the admin page forms
 if (document.querySelector("#updateEventForm")) {
+
+    // Events
     // Event Addition Form
     const addEventForm = document.getElementById("addEventForm")
     addEventForm.addEventListener("submit", addEvent)
@@ -122,6 +121,7 @@ if (document.querySelector("#updateEventForm")) {
     const deleteEventForm = document.getElementById("deleteEventForm")
     deleteEventForm.addEventListener("submit", deleteEvent)
 
+    // Menu Items
     // Menu Item Addition Form
     const addMenuForm = document.getElementById("addMenuForm")
     addMenuForm.addEventListener("submit", addMenuItem)
@@ -182,7 +182,7 @@ async function addEvent(event) {
     )
 }
 
-// Function to populate the event select dropdown
+// Function to populate the update event select dropdown
 async function populateEventUpdate(selectEventUpdate) {
     const response = await fetch("/api/events")
     const events = await response.json()
@@ -192,8 +192,6 @@ async function populateEventUpdate(selectEventUpdate) {
         const option = document.createElement("option")
         option.value = event._id
         option.innerText = event.event
-
-        // Populates the event Update dropdown
         selectEventUpdate.appendChild(option)
     }
 
@@ -205,7 +203,7 @@ async function populateEventUpdate(selectEventUpdate) {
     }
 }
 
-// Function to populate the event select dropdown
+// Function to populate the delete event select dropdown
 async function populateEventDelete(deleteEventUpdate) {
     const response = await fetch("/api/events")
     const events = await response.json()
@@ -215,8 +213,6 @@ async function populateEventDelete(deleteEventUpdate) {
         const option = document.createElement("option")
         option.value = event._id
         option.innerText = event.event
-
-        // Populates the event Update dropdown
         deleteEventUpdate.appendChild(option)
     }
 }
@@ -235,7 +231,7 @@ async function loadEventDetails(event) {
 
 // Function that updates the event details
 async function updateEvent(event) {
-    event.preventDefault() // Prevents default form submission
+    event.preventDefault()
     // Fetches the event details from the form
     const id = document.getElementById("selectEventUpdate").value
     const eventName = document.getElementById("eventUpdate").value
@@ -274,7 +270,7 @@ async function updateEvent(event) {
 
 // Function that deletes the selected event
 async function deleteEvent(event) {
-    event.preventDefault() // Prevents default form submission
+    event.preventDefault()
     const id = document.getElementById("deleteEventUpdate").value
     const response = await fetch(`/api/events/${id}`, {
         method: "DELETE",
@@ -328,7 +324,7 @@ async function addMenuItem(event) {
     )
 }
 
-// Function to populate the menu select dropdown
+// Function to populate the update menu dropdown
 async function populateMenuUpdate(selectMenuUpdate) {
     const response = await fetch("/api/menu")
     const menu = await response.json()
@@ -380,7 +376,7 @@ async function loadMenuDetails(event) {
 
 // Function that updates the menu details
 async function updateMenuItem(event) {
-    event.preventDefault() // Prevents default form submission
+    event.preventDefault()
     // Fetches the menu details from the form
     const id = document.getElementById("selectMenuUpdate").value
     const name = document.getElementById("nameUpdate").value
@@ -419,7 +415,7 @@ async function updateMenuItem(event) {
 
 // Deletes the selected menu item
 async function deleteMenuItem(event) {
-    event.preventDefault() // Prevents default form submission
+    event.preventDefault()
     const id = document.getElementById("deleteMenuUpdate").value
     const response = await fetch(`/api/menu/${id}`, {
         method: "DELETE",
